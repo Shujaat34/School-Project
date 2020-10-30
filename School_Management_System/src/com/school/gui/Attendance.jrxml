@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db996195-f0e4-4b10-9025-a14d3b6808a7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="School_DB"/>
+	<parameter name="Eligibility" class="java.lang.String"/>
+	<parameter name="Percentage" class="java.lang.String"/>
+	<parameter name="StudentName" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select ad.id, ad.student_name as Student , sub.name as Subject, atsub.percentage from attendance_subject atsub inner join admission ad on ad.id = atsub.admission_id 
+inner join ssubject sub on sub.id =atsub.subject_id where ad.Student_Name =$P{StudentName} order by ad.student_name ;]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="admission"/>
+	</field>
+	<field name="Student" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Student"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="admission"/>
+	</field>
+	<field name="Subject" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Subject"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ssubject"/>
+	</field>
+	<field name="percentage" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="percentage"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="attendance_subject"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="10" width="381" height="61" uuid="2f8ac968-941a-49ab-a7ad-9dee47dcdfb5"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Attendance]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="9" width="80" height="31" uuid="4b0223a3-0f6d-43db-bb7e-e5c1c97049a9"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Student]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="9" width="150" height="30" uuid="89cad3b9-fddc-49bd-94d6-1b02cee29412"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{StudentName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="30" uuid="720c82c2-78a8-4e78-aba4-377d3adabec1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="978e0ce9-fa08-49ea-93f5-fe86a498f0db"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="30" uuid="8d49e050-5f6a-4798-86fd-069216516bfd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dad75683-2b1e-4025-8c32-691fe14de5a7"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="0" width="138" height="30" uuid="39f3ba4e-54a8-4591-a9ea-46895b7241c6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffce37f1-8d5b-4d64-9a65-96757693bb4e"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[percentage]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="30" uuid="3f8feac1-72ae-421c-b987-1c8cbb0b08e3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="978e0ce9-fa08-49ea-93f5-fe86a498f0db"/>
+				</reportElement>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="30" uuid="962f761d-580b-4649-8880-28b9f4b2ceb4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dad75683-2b1e-4025-8c32-691fe14de5a7"/>
+				</reportElement>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Subject}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="0" width="138" height="30" uuid="68ba714e-381e-4b2a-8aaa-378123e9fe74">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffce37f1-8d5b-4d64-9a65-96757693bb4e"/>
+				</reportElement>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{percentage}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="7" width="150" height="30" uuid="57ab611e-4415-46c2-a9cb-222d7833fb5b"/>
+				<textElement>
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total Percentage]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="10" width="119" height="30" uuid="e0895302-9c57-4702-977f-ba6ea528d902"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Percentage}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="7" width="90" height="30" uuid="ed4cb167-c931-471a-98f7-6a3ae1944da3"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Eligibility]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="7" width="145" height="22" uuid="ea8245dd-f1c2-4b1f-9b87-30658be967c5"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Eligibility}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TimeTable" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="af67e979-413d-4320-9c5a-f9f7adf5a3c7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="School_DB"/>
+	<subDataset name="Dataset1" uuid="2c6f80fa-4718-4d0b-8ce2-5f1b704ceb12">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="School_DB"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="0e4aca49-bf3c-4703-ba40-bd79e04c10ea">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="School_DB"/>
+		<queryString language="SQL">
+			<![CDATA[Select class from class]]>
+		</queryString>
+		<field name="class" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="class"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="class"/>
+		</field>
+	</subDataset>
+	<parameter name="Day" class="java.lang.Integer"/>
+	<parameter name="Class" class="java.lang.String">
+		<parameterDescription><![CDATA[getting class Parameter from combo]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[Select  s.name as subject , (case 
+				when tit.day1=1 then "Monday"
+				when tit.day1=2 then "Tuesday"
+				when tit.day1=3 then "Wednesday"
+				when tit.day1=4 then "Thursday"
+				else "Friday"
+			end) as MyDAY, tt.from , tt.to ,(case 
+				when p.id =1 then "First"
+				when p.id =2 then "Second"
+				when p.id =3 then "Third"
+				when p.id =4 then "Fourth"
+				when p.id =5 then "Fifth"
+				when p.id =6 then "Sixth"
+				when p.id =7 then "Seventh"
+				when p.id =8 then "Eighth"
+				when p.id =9 then "Nineth"
+				else "Tenth"
+end) as Period
+	
+ from time_table tit inner join ssubject s on
+s.id = tit.subject_id inner join ttime tt on tt.id = tit.ttime_id inner join class c on c.id = tit.class_id inner join
+period p on p.id = tit.period_id where c.class = $P{Class} and tit.day1=$P{Day}   ;]]>
+	</queryString>
+	<field name="subject" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="subject"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ssubject"/>
+	</field>
+	<field name="MyDAY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MyDAY"/>
+	</field>
+	<field name="from" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="from"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ttime"/>
+	</field>
+	<field name="to" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="to"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ttime"/>
+	</field>
+	<field name="Period" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Period"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="20" width="391" height="41" uuid="4ff54d58-bfbb-407c-88eb-e8a9811d3f90"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Time Table]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="11" width="100" height="20" uuid="4a0b6657-f9f8-449b-ad1b-b2a902ba1587"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Class}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="10" width="80" height="21" uuid="8177805c-d500-49f3-a4de-2086605f3ced"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Class]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="6" width="131" height="24" uuid="9ab2787e-df55-4283-a38d-e211ccdb3058"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Day]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="330" y="6" width="100" height="30" uuid="aa4cd5af-62e4-4dda-bf1c-2ceda67cb46e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MyDAY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="95" height="30" uuid="173305f9-2fc9-440f-a0d1-30c5908f536c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="15346588-4d93-4db8-8951-c0918d150f2e"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="0" width="92" height="30" uuid="c1e78609-80ff-4a9f-aee8-65dc87b4a7fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c50d46d-ba32-411e-aeb0-32751ef5988f"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="92" height="30" uuid="97f20029-0cef-4f10-8f05-1cd9e8281eed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2be27986-efed-42ee-8246-e3c0f8e4056e"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="92" height="30" uuid="9efe6317-dd4c-4ee6-afc4-95919dbcf052">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="86e8476b-a7f0-4128-8bed-52c20629e90b"/>
+				</reportElement>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Period]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="95" height="30" uuid="391877d7-0ec7-484d-b8a0-b09c41fad960">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="15346588-4d93-4db8-8951-c0918d150f2e"/>
+				</reportElement>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subject}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="92" height="30" uuid="d42c8af0-9452-4baa-b7bf-f1ecc014be2b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c50d46d-ba32-411e-aeb0-32751ef5988f"/>
+				</reportElement>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{from}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="92" height="30" uuid="ca93528e-200f-45bb-8dd0-37cb0132fb85">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2be27986-efed-42ee-8246-e3c0f8e4056e"/>
+				</reportElement>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{to}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="92" height="30" uuid="8d507c77-a42e-4a85-bf0a-e7e8cb972bf5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="86e8476b-a7f0-4128-8bed-52c20629e90b"/>
+				</reportElement>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Period}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
